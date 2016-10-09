@@ -14,9 +14,9 @@ for(var i=1 ; i<= 2; i++){
 }
 
 
-
+var result=[];
 function getUrls(){
-  var result=[];
+  
   var topicUrls=[],num=0;
   cnodeUrls.forEach(function(cnodeUrl){
       superagent.get(cnodeUrl)
