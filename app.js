@@ -15,7 +15,7 @@ for(var i=1 ; i<= 2; i++){
 }
 
 
-var result=[];
+var result=[],flag=0;
 function getUrls(){
 
   cnodeUrls.forEach(function(cnodeUrl){
@@ -29,9 +29,20 @@ function getUrls(){
           var $=cheerio.load(res.text);
 
           $('#topic_list .topic_title').each(function (idx, element) {
+                var flag=0;
                 var $element = $(element);
                 var href = url.resolve(cnodeUrl, $element.attr('href'));
-                result.push(href);
+                //去重，防止刷新后数据的重复获取；
+                //主要是因为result是全局变量
+                for(var i=0;i<result.length;i++){
+                  if(result[i]==href){
+                    flag=1;
+                  }
+                }
+                if(flag==0){
+                 result.push(href);
+                }
+                
                
           });
       });
@@ -39,6 +50,8 @@ function getUrls(){
   return result;
   
 }
+
+
 
 app.get('/',function(req,sres,next){
   var num=1;

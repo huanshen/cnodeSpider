@@ -31,7 +31,14 @@ function getUrls(){
           $('#topic_list .topic_title').each(function (idx, element) {
                 var $element = $(element);
                 var href = url.resolve(cnodeUrl, $element.attr('href'));
-                result.push(href);
+                for(var i=0;i<result.length;i++){
+                  if(result[i]==href){
+                    flag=1;
+                  }
+                }
+                if(flag==0){
+                 result.push(href);
+                }
                
           });
       });
