@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "lesson4",
   "version": "0.0.0",
   "description": "使用 eventproxy 控制并发",

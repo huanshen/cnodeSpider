@@ -41,23 +41,28 @@ function getUrls(){
 }
 
 app.get('/',function(req,sres,next){
+  var num=1;
+  sres.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'});
     var topicUrls=getUrls();
 
     var eq=new eventproxy();
 
     eq.after('topic_html',topicUrls.length,function(topics){
-      topics=topics.map(function(topicPair){
+      topics.map(function(topicPair){
         var topicUrl=topicPair[0];
         var topichtml=topicPair[1];
         var $=cheerio.load(topichtml);
-        return({
-          title:$('.topic_full_title').text().trim(),
-          href: topicUrl,
-          comment1:$('.reply_content').eq(0).text().trim(),
-        });
+       // return({
+          sres.write('<b>'+num+"</b> title: "+$('.topic_full_title').text().trim()+'<br>');
+          //sres.write("评论："+$('.reply_content').eq(0).text().trim()+'<br>');
+          sres.write("url: "+topicUrl+'<br><br>');
+          num++;
+          //href: topicUrl,
+         // comment1:$('.reply_content').eq(0).text().trim(),
+        //});
       });
       
-        sres.send(topics);
+        //sres.send(topics);
     });
 
 
