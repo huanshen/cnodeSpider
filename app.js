@@ -67,7 +67,7 @@ app.get('/',function(req,sres,next){
         var $=cheerio.load(topichtml);
        // return({
           sres.write('<b>'+num+"</b> title: "+$('.topic_full_title').text().trim()+'<br>');
-          //sres.write("评论："+$('.reply_content').eq(0).text().trim()+'<br>');
+          sres.write("评论："+$('.reply_content').eq(0).text().trim()+'<br>');
           sres.write("url: "+topicUrl+'<br><br>');
           num++;
           //href: topicUrl,
