@@ -17,12 +17,12 @@ for(var i=1 ; i<= 2; i++){
 
 var result=[];
 function getUrls(){
-
+  var flag=0;
   cnodeUrls.forEach(function(cnodeUrl){
       superagent.get(cnodeUrl)
         .end(function(err,res){
           if(err){
-            return next(err);
+            return console.error(err);
           }
 
           
@@ -65,6 +65,7 @@ app.get('/',function(req,sres,next){
       });
       
         sres.send(topics);
+        console.log("finish");
     });
 
 
